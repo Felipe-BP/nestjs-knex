@@ -12,12 +12,10 @@ We love [Nestjs](https://nestjs.com/) framework and [Knex.js](http://knexjs.org/
 
 ## Installation
 
-NOT AVAILABLE IN NPM YET!
-
 To install this generated project:
 
 ```bash
-$ npm install nestjs-knex
+$ npm install nestjs-knexjs knex
 ```
 
 Install one of the following wich you will use
@@ -89,4 +87,4 @@ This package is configured with [commitlint](https://github.com/conventional-cha
 
 ## Author
 
-[Felipe Bueno](github.com/Felipe-BP)
+[Felipe Bueno](https://github.com/Felipe-BP)
