@@ -1,10 +1,14 @@
 {
-    "name": "nestjs-knex",
+    "name": "nestjs-knexjs",
     "version": "1.0.0",
     "description": "Package created to integrate Knex library and Nestjs framework",
     "author": "Felipe Bueno",
     "license": "MIT",
     "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Felipe-BP/nestjs-knex"
+    },
     "scripts": {
         "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
         "build": "tsc",
