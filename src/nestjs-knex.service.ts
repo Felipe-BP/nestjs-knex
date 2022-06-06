@@ -28,12 +28,13 @@ export class NestjsKnexService implements INestjsKnexService {
                 5000),
             );
 
-        const setupDatabase = new Promise<Knex>(resolve => {
+        const setupDatabase = new Promise<Knex>(async (resolve) => {
             if (this._knexConnection) {
                 return resolve(this._knexConnection);
             }
             this._knexConnection = Knex(this._nestjsKnexOptions);
-            this._knexConnection.once('connection', () => resolve(this._knexConnection));
+            await this._knexConnection.raw('SELECT 1');
+            resolve(this._knexConnection);
         });
 
         return await Promise.race([
