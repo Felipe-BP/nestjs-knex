@@ -1,10 +1,14 @@
 import { Config } from 'knex';
 
+export type EnvConfig = Pick<Config, 'connection'>;
+
 export interface NestjsKnexConfig {
-    development: Pick<Config, 'connection'>;
-    test: Pick<Config, 'connection'>;
-    stagging: Pick<Config, 'connection'>;
-    production: Pick<Config, 'connection'>;
+    development: EnvConfig;
+    test: EnvConfig;
+    stagging: EnvConfig;
+    production: EnvConfig;
 }
 
-export default interface NestjsKnexOptions extends Config {}
+type NestjsKnexOptions = Config;
+
+export default NestjsKnexOptions;

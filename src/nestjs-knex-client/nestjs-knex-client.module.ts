@@ -5,16 +5,10 @@ import { Module } from '@nestjs/common';
 import { NestjsKnexClientController } from './nestjs-knex-client.controller';
 import { NestjsKnexModule } from '../nestjs-knex.module';
 
-import knexConfigFile = require('./knex.config');
+import { knexConfig } from './knex.config';
+import { EnvConfig } from '../interfaces/nestjs-knex-options.interface';
 
-let config = null;
-switch (process.env.NODE_ENV) {
-    case 'development' : config = knexConfigFile.knexConfig.development; break;
-    case 'test' : config = knexConfigFile.knexConfig.test; break;
-    case 'stagging' : config = knexConfigFile.knexConfig.stagging; break;
-    case 'production' : config = knexConfigFile.knexConfig.production; break;
-    default: config = knexConfigFile.knexConfig.development;
-}
+const config: EnvConfig = knexConfig[process.env.NODE_ENV ?? 'development'];
 
 @Module({
     controllers: [NestjsKnexClientController],
