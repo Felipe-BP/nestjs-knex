@@ -3,7 +3,7 @@ import { NestjsKnexService } from './nestjs-knex.service';
 
 export const connectionFactory = {
     provide: KNEX_CONNECTION,
-    useFactory: async nestjsKnexService => {
+    useFactory: async (nestjsKnexService: NestjsKnexService) => {
         return nestjsKnexService.getKnexConnection();
     },
     inject: [NestjsKnexService],
