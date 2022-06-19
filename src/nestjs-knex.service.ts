@@ -3,7 +3,7 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import { NESTJS_KNEX_OPTIONS } from './constants';
 import { NestjsKnexOptions } from './interfaces';
 
-import * as Knex from 'knex';
+import { Knex, knex } from 'knex';
 
 interface INestjsKnexService {
     getKnexConnection(): Promise<Knex>;
@@ -32,7 +32,7 @@ export class NestjsKnexService implements INestjsKnexService {
             if (this._knexConnection) {
                 return resolve(this._knexConnection);
             }
-            this._knexConnection = Knex(this._nestjsKnexOptions);
+            this._knexConnection = knex(this._nestjsKnexOptions);
             await this._knexConnection.raw('SELECT 1');
             resolve(this._knexConnection);
         });
