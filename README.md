@@ -18,7 +18,7 @@ To install this generated project:
 $ npm install nestjs-knexjs knex
 ```
 
-Install one of the following wich you will use
+Install the expected client library for your database:
 
 ```bash
 $ npm install pg
