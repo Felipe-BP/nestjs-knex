@@ -1,5 +1,5 @@
 /* Dependencies */
-import { ModuleMetadata, Type } from '@nestjs/common/interfaces';
+import { InjectionToken, ModuleMetadata, OptionalFactoryDependency, Type } from '@nestjs/common/interfaces';
 
 /* Interfaces */
 import NestjsKnexOptions from './nestjs-knex-options.interface';
@@ -9,7 +9,7 @@ import {
 
 export interface NestjsKnexAsyncOptions
     extends Pick<ModuleMetadata, 'imports'> {
-    inject?: unknown[];
+    inject?: Array<InjectionToken | OptionalFactoryDependency>;
     useExisting?: Type<NestjsKnexOptionsFactory>;
     useClass?: Type<NestjsKnexOptionsFactory>;
     useFactory?: (
