@@ -14,7 +14,7 @@
         "build": "tsc",
         "prepare": "husky install && npm run build",
         "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "tslint -p tsconfig.json -c tslint.json",
+        "lint": "eslint -c .eslintrc.json --ext .ts src",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:cov": "jest --coverage",
@@ -46,7 +46,10 @@
         "@types/jest": "^28.1.2",
         "@types/node": "^18.0.0",
         "@types/supertest": "^2.0.12",
+        "@typescript-eslint/eslint-plugin": "^5.29.0",
+        "@typescript-eslint/parser": "^5.29.0",
         "dotenv": "^16.0.1",
+        "eslint": "^8.18.0",
         "husky": "^8.0.1",
         "jest": "^28.1.1",
         "lint-staged": "^13.0.2",
@@ -59,7 +62,6 @@
         "ts-node": "^10.8.1",
         "tsc-watch": "^5.0.3",
         "tsconfig-paths": "3.8.0",
-        "tslint": "5.16.0",
         "typescript": "^4.7.4"
     },
     "jest": {

@@ -9,10 +9,10 @@ import {
 
 export interface NestjsKnexAsyncOptions
     extends Pick<ModuleMetadata, 'imports'> {
-    inject?: any[];
+    inject?: unknown[];
     useExisting?: Type<NestjsKnexOptionsFactory>;
     useClass?: Type<NestjsKnexOptionsFactory>;
     useFactory?: (
-        ...args: any[]
+        ...args: unknown[]
     ) => Promise<NestjsKnexOptions> | NestjsKnexOptions;
 }
