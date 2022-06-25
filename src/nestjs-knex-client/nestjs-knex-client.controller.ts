@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { Controller, Delete, Get, Inject, Param, Query } from '@nestjs/common';
 
-import * as Knex from 'knex';
+import { Knex } from 'knex';
 
 import { KNEX_CONNECTION } from '../constants';
 @Controller()

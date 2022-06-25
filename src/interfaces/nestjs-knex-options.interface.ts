@@ -1,6 +1,6 @@
-import { Config } from 'knex';
+import { Knex } from 'knex';
 
-export type EnvConfig = Pick<Config, 'connection'>;
+export type EnvConfig = Pick<Knex.Config, 'connection'>;
 
 export interface NestjsKnexConfig {
     development: EnvConfig;
@@ -9,6 +9,6 @@ export interface NestjsKnexConfig {
     production: EnvConfig;
 }
 
-type NestjsKnexOptions = Config;
+type NestjsKnexOptions = Knex.Config;
 
 export default NestjsKnexOptions;
