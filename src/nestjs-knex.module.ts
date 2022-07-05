@@ -1,6 +1,7 @@
 import { Module, DynamicModule, Provider, Global } from '@nestjs/common';
 import { NestjsKnexService } from './nestjs-knex.service';
 import {
+    KNEX_CONNECTION,
     NESTJS_KNEX_OPTIONS,
 } from './constants';
 import {
@@ -8,24 +9,28 @@ import {
     NestjsKnexAsyncOptions,
     NestjsKnexOptionsFactory,
 } from './interfaces';
-import { createNestjsKnexProviders } from './nestjs-knex.providers';
-import { connectionFactory } from './nestjs-knex-connection.provider';
 
 @Global()
-@Module({
-    providers: [NestjsKnexService, connectionFactory],
-    exports: [NestjsKnexService, connectionFactory],
-})
+@Module({})
 export class NestjsKnexModule {
     /**
      * Registers a configured NestjsKnex Module for import into the current module
      */
-    public static register(
+    public static forRoot(
         options: NestjsKnexOptions,
     ): DynamicModule {
+        const dataSourceProvider = this.createConnectionProvider(options);
         return {
             module: NestjsKnexModule,
-            providers: createNestjsKnexProviders(options),
+            providers: [
+                NestjsKnexService,
+                {
+                    provide: NESTJS_KNEX_OPTIONS,
+                    useValue: options,
+                },
+                dataSourceProvider,
+            ],
+            exports: [dataSourceProvider]
         };
     }
 
@@ -33,26 +38,27 @@ export class NestjsKnexModule {
      * Registers a configured NestjsKnex Module for import into the current module
      * using dynamic options (factory, etc)
      */
-    public static registerAsync(
+    public static forRootAsync(
         options: NestjsKnexAsyncOptions,
     ): DynamicModule {
         return {
             module: NestjsKnexModule,
             providers: [
-                ...this.createProviders(options),
+                this.createConnectionProvider(options),
+                ...this.createAsyncProviders(options),
             ],
         };
     }
 
-    private static createProviders(
+    private static createAsyncProviders(
         options: NestjsKnexAsyncOptions,
     ): Provider[] {
         if (options.useExisting || options.useFactory) {
-            return [this.createOptionsProvider(options)];
+            return [this.createAsyncOptionsProvider(options)];
         }
 
         return [
-            this.createOptionsProvider(options),
+            this.createAsyncOptionsProvider(options),
             {
                 provide: options.useClass,
                 useClass: options.useClass,
@@ -60,7 +66,17 @@ export class NestjsKnexModule {
         ];
     }
 
-    private static createOptionsProvider(
+    private static createConnectionProvider(
+        options: NestjsKnexOptions | NestjsKnexAsyncOptions,
+    ): Provider {
+        return {
+            provide: options?.name ?? KNEX_CONNECTION,
+            useFactory: async (service: NestjsKnexService) => await service.getKnexConnection(),
+            inject: [NestjsKnexService]
+        }
+    }
+
+    private static createAsyncOptionsProvider(
         options: NestjsKnexAsyncOptions,
     ): Provider {
         if (options.useFactory) {

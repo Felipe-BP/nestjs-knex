@@ -9,6 +9,6 @@ export interface NestjsKnexConfig {
     production: EnvConfig;
 }
 
-type NestjsKnexOptions = Knex.Config;
+type NestjsKnexOptions = Knex.Config & { name?: string };
 
 export default NestjsKnexOptions;
