@@ -1,10 +1,14 @@
-import { Config } from 'knex';
+import { Knex } from 'knex';
+
+export type ConnectionConfig = Pick<Knex.Config, 'connection'>;
 
 export interface NestjsKnexConfig {
-    development: Pick<Config, 'connection'>;
-    test: Pick<Config, 'connection'>;
-    stagging: Pick<Config, 'connection'>;
-    production: Pick<Config, 'connection'>;
+    development: ConnectionConfig;
+    test: ConnectionConfig;
+    stagging: ConnectionConfig;
+    production: ConnectionConfig;
 }
 
-export default interface NestjsKnexOptions extends Config {}
+type NestjsKnexOptions = Knex.Config & { name?: string };
+
+export default NestjsKnexOptions;

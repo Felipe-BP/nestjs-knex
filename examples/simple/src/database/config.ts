@@ -1,6 +1,7 @@
-import { NestjsKnexConfig } from '../interfaces/nestjs-knex-options.interface';
+import { NestjsKnexConfig } from 'nestjs-knexjs';
+import { Knex } from 'knex';
 
-export const knexConfig: NestjsKnexConfig = {
+const knexConfig: NestjsKnexConfig = {
     development: {
         connection: {
             host: process.env.DEV_HOST,
@@ -38,3 +39,5 @@ export const knexConfig: NestjsKnexConfig = {
         },
     },
 };
+
+export const config: Pick<Knex.Config, 'connection'> = knexConfig[process.env.NODE_ENV ?? 'development'];
