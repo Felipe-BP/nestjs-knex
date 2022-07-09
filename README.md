@@ -33,49 +33,7 @@ $ npm install mssql
 
 ## Usage
 
-First of all inside src/nestjs-knex-client folder I've created a nestjs application example using this package, with good pratices, as using dotenv, and knex configuration to each environment. So, check this out!
-
-1. Import NestjsKnexModule and setup inside core module of your application:
-
-    ```typescript
-        @Module({
-            imports: [NestjsKnexModule.register({
-                client: 'pg',
-                connection: {
-                    host: 'host',
-                    user: 'user',
-                    password: 'pass',
-                    database: 'database',
-                    port: 5432,
-                },
-            })],
-        })
-        export class AppModule { }
-    ```
-
-2. Now use NestjsKnexService inside your service constructor to provide Knex connection:
-
-    ```typescript
-        private readonly knex: Knex = null;
-
-        constructor(private nestjsKnexService: NestjsKnexService) {
-            this.knex = this.nestjsKnexService.getKnexConnection();
-        }
-
-        async getAll() {
-            return await this.knex('your-table').select('*');
-        }
-    ```
-
-    Or
-
-    ```typescript
-        constructor(@Inject(KNEX_CONNECTION) private readonly knex: Knex) { }
-
-        async getAll() {
-            return await this.knex('your-table').select('*');
-        }
-    ```
+Check out the [examples](./examples/) folder.
 
 ## Contributing
 
@@ -87,4 +45,4 @@ This package is configured with [commitlint](https://github.com/conventional-cha
 
 ## Author
 
-[Felipe Bueno](https://github.com/Felipe-BP)
+- [Felipe Bueno](https://github.com/Felipe-BP)

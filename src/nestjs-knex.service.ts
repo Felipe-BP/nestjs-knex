@@ -1,4 +1,3 @@
-// tslint:disable: variable-name
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { NESTJS_KNEX_OPTIONS } from './constants';
 import { NestjsKnexOptions } from './interfaces';
