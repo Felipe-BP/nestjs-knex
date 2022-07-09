@@ -10,7 +10,6 @@
         "url": "https://github.com/Felipe-BP/nestjs-knex"
     },
     "scripts": {
-        "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
         "build": "tsc",
         "prepare": "husky install && npm run build",
         "format": "prettier --write \"src/**/*.ts\"",
@@ -48,12 +47,10 @@
         "@types/supertest": "^2.0.12",
         "@typescript-eslint/eslint-plugin": "^5.29.0",
         "@typescript-eslint/parser": "^5.29.0",
-        "dotenv": "^16.0.1",
         "eslint": "^8.18.0",
         "husky": "^8.0.1",
         "jest": "^28.1.1",
         "lint-staged": "^13.0.2",
-        "pg": "^8.7.3",
         "prettier": "^2.7.1",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.5.5",
