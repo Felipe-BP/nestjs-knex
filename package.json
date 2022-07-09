@@ -1,6 +1,6 @@
 {
     "name": "nestjs-knexjs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Package created to integrate Knex.js query builder with Nest framework.",
     "author": "Felipe Bueno",
     "license": "MIT",
