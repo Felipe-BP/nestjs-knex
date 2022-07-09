@@ -11,7 +11,7 @@
     },
     "scripts": {
         "build": "tsc",
-        "prepare": "husky install && npm run build",
+        "postbuild": "copyfiles ./package.json dist/",
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "eslint -c .eslintrc.json --ext .ts src",
         "test": "jest",
@@ -47,6 +47,7 @@
         "@types/supertest": "^2.0.12",
         "@typescript-eslint/eslint-plugin": "^5.29.0",
         "@typescript-eslint/parser": "^5.29.0",
+        "copyfiles": "^2.4.1",
         "eslint": "^8.18.0",
         "husky": "^8.0.1",
         "jest": "^28.1.1",
